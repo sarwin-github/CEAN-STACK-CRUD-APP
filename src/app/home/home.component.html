@@ -1,0 +1,84 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 col-lg-12 pt-5">
+
+      <div class="alert alert-danger alert-dismissible fade show mx-5" [hidden]="!deleteMessage" role="alert">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close" (click)="onAlertClose()">&times;</a>
+        <span>{{deleteMessage}}</span>
+      </div> 
+
+      <div class="alert alert-success alert-dismissible fade show mx-5" [hidden]="!addMessage" role="alert">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close" (click)="onAlertClose()">&times;</a>
+        <span>{{addMessage}}</span>
+      </div> 
+
+      <div class="alert alert-warning alert-dismissible fade show mx-5" [hidden]="!updateMessage" role="alert">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close" (click)="onAlertClose()">&times;</a>
+        <span>{{updateMessage}}</span>
+      </div> 
+
+      <div class="card-success px-5 pb-5">
+        <div class="card-header bg-info text-light">
+          <h4>List of books
+            <form class="float-right">
+              <div class="form-group">
+                <input type="text" name="search" [(ngModel)]="book_search" placeholder="Search" class="form-control">
+              </div>
+            </form>
+          </h4>
+          
+        </div>
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Author</th>
+              <th>Type</th>
+              <th>ISBN</th>
+              <th><a routerLink="/books/add" class="btn btn-sm btn-success"><span class="fa fa-plus-square mr-2"></span> Add new book </a></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let book of list?.books | BookFilter: book_search">
+              <td>{{book.value.Title}}</td>
+              <td>{{book.value.Author}}</td>
+              <td>{{book.value.Type}}</td>
+              <td>{{book.value.ISBN}}</td>
+              <td>
+                <a href="" class="btn btn-sm btn-danger mr-2" data-toggle="modal" data-target="#deleteBookModal" (click)="deleteButtonClick(book.id, book.value.Title)">Delete</a> 
+                <a routerLink="/books/update/{{book.id}}" class="btn btn-sm btn-info">Edit</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        
+        <!-- Modal for deleting a book -->
+        <div class="modal fade" id="deleteBookModal" tabindex="-1" role="dialog" aria-hidden="false">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title text-danger" id="">Remove a Book from Library</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <h5 class="text-danger">id: {{book_id}}</h5><br>
+                You are about to remove this book  with title {{book_title}}. Are you sure you want to proceed?
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="proceedDeleteClick()">Remove</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      
+    </div>
+    
+  </div>
+  
+</div>

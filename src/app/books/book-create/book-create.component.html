@@ -1,0 +1,44 @@
+<div class="container">
+	<div class="row">
+
+		<div class="col-md-8 col-lg-8 offset-2 py-5 card my-5">
+			<h5>Add new book</h5><hr>
+			<form class="form" (submit)="addBook()" [formGroup]="createBookForm">
+				<div class="input-group input-group-sm mb-3">
+				  <div class="input-group-prepend">
+				    <span class="input-group-text bg-info text-light pl-3" style="width: 80px;" id="inputGroup-sizing-sm">Title</span>
+				  </div>
+				  <input type="text" class="form-control" formControlName="title" required>
+				</div>
+
+				<div class="input-group input-group-sm mb-3">
+				  <div class="input-group-prepend">
+				    <span class="input-group-text bg-info text-light pl-3" style="width: 80px;" id="inputGroup-sizing-sm">Author</span>
+				  </div>
+				  <input type="text" class="form-control"  formControlName="author" required>
+				</div>
+
+				<div class="input-group input-group-sm mb-3">
+				  <div class="input-group-prepend">
+				    <span class="input-group-text bg-info text-light pl-3" style="width: 80px;" id="inputGroup-sizing-sm">Type</span>
+				  </div>
+				  <input type="text" class="form-control" formControlName="type" required>
+				</div>
+
+				<div class="input-group input-group-sm mb-3">
+				  <div class="input-group-prepend">
+				    <span class="input-group-text bg-info text-light pl-3" style="width: 80px;" id="inputGroup-sizing-sm">ISBN</span>
+				  </div>
+				  <input type="text" class="form-control" formControlName="isbn" required>
+				</div>
+				<br>
+				<div class="text-right">
+					<button class="btn btn-info px-5">Add book</button>
+				</div>
+			</form>
+		</div>
+		
+		
+	</div>
+	
+</div>
